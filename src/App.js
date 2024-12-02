@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import DropFileArea from "./components/DropFileArea";
+import PreviewFiles from "./components/PreviewFile";
+import SearchBar from "./components/SearchBar";
+import uploadImg from './assets/upload.png';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function App() {
+const App = () => {
+  const [file, setFile] = useState(null);
+  const [fileContent, setFileContent] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleFileUpload = (file, content) => {
+    setFile(file);
+    setFileContent(content);
+    toast.success("File uploaded successfully!");
+  };
+
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+    if (!term) toast.info("Search cleared.");
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="mt-5">
+      <h1 id="title-content" className="text-center">
+        <img src={uploadImg} alt=""/>
+        Upload Files and Search
+        </h1>
+      <DropFileArea onFileUpload={handleFileUpload} />
+      <SearchBar onSearchChange={handleSearchChange} />
+      {file && (
+        <PreviewFiles file={file} content={fileContent} searchTerm={searchTerm} />
+      )}
+      <ToastContainer />
+    </Container>
   );
-}
+};
 
 export default App;

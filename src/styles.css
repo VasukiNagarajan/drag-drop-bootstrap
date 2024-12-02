@@ -1,0 +1,28 @@
+img{
+  width: 70px;
+}
+
+.icon-small{
+  width: 30px;
+}
+
+#drop-place{
+  height: 120px;
+}
+
+#border-dashed {
+  border: 3px solid #a7c4e3;
+  border-radius: 30px;
+}
+
+#border-dashed:hover {
+  border: 4px dashed #a7c4e3;
+  background-color: aliceblue;
+}
+
+#title-content {
+  background-color: rgb(170, 197, 247);
+  border-radius: 9px;
+  border: solid rgb(179, 198, 236);
+  margin-bottom: 20px;
+}
